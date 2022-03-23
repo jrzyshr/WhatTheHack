@@ -1,4 +1,4 @@
-# How to Create and Contribute your What The Hack
+# What The Hack - Author's Guide
 
 Developing a new What The Hack is a great way to get your content out to the world. Chances are if you've done workshops or PoCs in the past, you already have the material on which to base a What The Hack.
 
@@ -137,9 +137,9 @@ This has the benefit of not having to direct the attendees to the WTH repo durin
 
 One recommended way to enable attendees to easily download hack resources is using DownGit. DownGit is a clever utility that lets you create a download link to any GitHub public directory or file. 
 
-You can view the DownGit project on GitHub here: https://github.com/MinhasKamal/DownGit
+You can view the DownGit project on GitHub here: <https://github.com/MinhasKamal/DownGit>
 
-And you can use DownGit from its website here: https://minhaskamal.github.io/DownGit/#/home
+And you can use DownGit from its website here: <https://minhaskamal.github.io/DownGit/#/home>
 
 To enable attendees to download hack resources using DownGit:
 1. As mentioned above, publish your resources in the WTH repo under the `..Student/Resources` folder of your hack
@@ -162,7 +162,8 @@ You may be wondering why there is a section called "Presentation Lectures" when 
 When you host a What The Hack event, there is always a kick off meeting where the attendees are welcomed and then introduced to the logistics of the hack. The best way to do that is with a *short* PowerPoint delivered a few slides at a time.
 
 We have provided an Event Kickoff presentation template that you can customize for your hack and use to cover attendee logistics for a WTH event here:
-- [Event Kickoff Presentation Template](WTH-EventKickoff-Template.pptx). 
+- [Event Kickoff Presentation Template (Virtual)](WTH-EventKickoff-Virtual-Template.pptx)
+- [Event Kickoff Presentation Template (In-Person)](WTH-EventKickoff-InPerson-Template.pptx)
 
 After the kickoff meeting, its up to the hack authors if they want to provide any presentation lectures.  Some hack challenges are easy to jump right into.  Others are more complex and are better preceded by a brief introduction presentation.
 
@@ -219,7 +220,7 @@ Okay, ready to get started creating your own What The Hack?
 
 First we create a fork of the main WTH repo and then clone it to disk and create a branch to work in. The instructions below assume you have the git command line on your machine. If you're more comfortable in a GUI git client, you can use that too (we recommend SourceTree).
 1. Create a fork of the WTH repo
-   - Navigate to the WTH git repo at: https://aka.ms/wth
+   - Navigate to the WTH git repo at: <https://aka.ms/wth>
    - Click the Fork button at the top right of the page and then choose the account you want to create the fork in. 
 2. Clone your new fork to your local machine
    - `git clone https://github.com/myname/WhatTheHack.git`
