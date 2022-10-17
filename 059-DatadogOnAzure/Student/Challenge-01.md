@@ -38,13 +38,13 @@ However, this method does not scale when you need to configure monitoring across
 
 For this challenge, you will use Terraform to deploy the Datadog monitor. We have provided you with a sample Terraform file that can be used to configure monitoring in Datadog. 
 
-You can find the sample Terraform file, `GenerateMonitors.tf`, in the `/Challenge-01` folder of the `Resources.zip` file provided by your coach. To complete the challenge, navigate to the location of this file using your terminal client (WSL or Azure Cloud Shell).
+You can find the sample Terraform file, `main.tf`, in the `/Challenge-01` folder of the `Resources.zip` file provided by your coach. To complete the challenge, navigate to the location of this file using your terminal client (WSL or Azure Cloud Shell).
 
-- Update the parameters of the `GenerateMonitors.tf` file 
+- Update the parameters of the `main.tf` file 
 - Add the names of your VMs for your monitors
-- Deploy the `GenerateMonitors.tf` template using: 
+- Deploy the `main.tf` template using: 
 
-    ```terraform apply -f GenerateMonitors.tf```
+    ```terraform init && terraform apply -auto-approve ```
  
 - Modify the `GenerateMonitors.tf` to include “Disk Write Operations/Sec” and set a threshold of 20
 - Rerun your template and verify your new Monitors are created for each of your VMs
