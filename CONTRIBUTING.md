@@ -199,6 +199,8 @@ There are three ways to resolve any misspelled words reported by the spell check
 
 Testing one more time with a code block with typos...
 
+and wres intrdoucing smoe typos here!
+
 ```
 # Here is a code block
 
