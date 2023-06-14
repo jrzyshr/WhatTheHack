@@ -192,6 +192,11 @@ This will run on each pull request that is submitted to the `master` branch.
 
 ![Spell Check Misspelled Words](000-HowToHack/images/spell-check-misspelled-words.png?raw=true "Spell Check Misspelled Words")
 
+There are three ways to resolve any misspelled words reported by the spell checker:
+1. Fix the spelling!
+1. Add it to the .wordlist.txt whitelist file
+1. Place the word in a code block by surrounding it with back ticks.
+
 If you have unique or technical words that are not already in the global `.wordlist` file, you can add your own list. Add a file called `.wordlist.txt` to your new WTH sub-directory and include all the words you want the spell checker to ignore. There should be 1 word on each line (similar to how the `.github/workflows/spell-check/.wordlist.txt` file is formatted).
 
 ### Use Draft Pull Requests for Early Feedback
