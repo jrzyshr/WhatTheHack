@@ -197,7 +197,16 @@ There are three ways to resolve any misspelled words reported by the spell check
 1. Add it to the `.wordlist.txt` whitelist file in the root of your hack's folder
 1. Place the word in a code block by surrounding it with back ticks.
 
-Testing one more time...
+Testing one more time with a code block with typos...
+
+```
+# Here is a code block
+
+th34e is mnay typos here
+
+azFW=$myDogzName
+
+```
 
 If you have unique or technical words that are not already in the global `.wordlist` file, you can add your own list. Add a file called `.wordlist.txt` to your new WTH sub-directory and include all the words you want the spell checker to ignore. There should be 1 word on each line (similar to how the `.github/workflows/spell-check/.wordlist.txt` file is formatted).
 
