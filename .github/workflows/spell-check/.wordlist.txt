@@ -1,5 +1,6 @@
 AAD
 ABAP
+ACA
 ACG
 ACI
 ACR
@@ -94,6 +95,7 @@ CmdLet
 CmdLets
 CoE
 CodeQL
+Codespaces
 ConfigMap
 ConnectionString
 ContainerRegistry
@@ -130,12 +132,16 @@ DirectQuery
 Dockerfile
 Dockerfiles
 Dockerize
+Dodgeball
 DocumentDB
+Dodgeball
 EKS
 EOF
 ETL
 EntityFramework
 Ethernet
+Eventbrite
+Eventzilla
 EventHub
 EventHubs
 Excel
@@ -149,6 +155,7 @@ FileStorage
 FirstName
 FluentD
 FrontDoor
+Gamify
 GCP
 GDPR
 GKE
@@ -183,6 +190,7 @@ ISA
 ISE
 IaC
 IaaS
+Incentivize
 InstrumentationKey
 IntelliJ
 Intellisense
@@ -216,6 +224,7 @@ LOC
 LRS
 LTS
 LastName
+Learnings
 LinkedIn
 LinkerD
 Linq
@@ -258,6 +267,7 @@ NuGet
 OAuth
 OCI
 OData
+OIDC
 OLAP
 OLTP
 ONNX
@@ -332,6 +342,7 @@ ResourceAlias
 ResourceGroup
 ResourceGroupName
 ResourceId
+RSVPify
 Runbook
 Runbooks
 Runtime
@@ -389,6 +400,7 @@ TailwindInventory
 TenantId
 Terraform
 TextBox
+TextEdit
 TextWriter
 TimeSeries
 ToString
@@ -465,6 +477,7 @@ config
 const
 containerPort
 cp
+criterias
 cron
 crontab
 crontabs
@@ -506,6 +519,7 @@ frontend
 fullscreen
 func
 gRPC
+gamify
 geospatial
 gz
 gzip
@@ -521,6 +535,7 @@ idempotency
 idempotent
 ie
 ifconfig
+incentivize
 ini
 init
 inodes
@@ -533,6 +548,7 @@ kubeconfig
 kubectl
 kubenet
 kustomize
+learnings
 lifecycle
 localhost
 macOS
@@ -544,11 +560,13 @@ microservices
 middleware
 minikube
 mins
+mitigations
 mnt
 multiuser
 mv
 namespace
 nav
+navigatable
 netstat
 nginx
 ngrok
@@ -569,8 +587,8 @@ prebuilt
 prem
 prerelease
 proc
-programatically
-programatically
+programmatic
+programmatically
 ps
 psql
 pubsub
@@ -595,6 +613,7 @@ scp
 sed
 sitename
 sln
+squadmembers
 src
 stateful
 stderr
