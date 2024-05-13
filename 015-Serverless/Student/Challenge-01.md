@@ -51,6 +51,8 @@ If you want to set up the developer environment on your local workstation, expan
 <details markdown=1>
 <summary markdown="span"><strong>Click to expand/collapse Local Workstation Requirements</strong></summary>
 
+Change to trigger spell check
+
 Set up your *local* environment:
 - Visual Studio Code (or Visual Studio with Azure development workload)
 - Azure CLI
