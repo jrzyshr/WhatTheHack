@@ -1,4 +1,4 @@
-# What The Hack - Azure OpenAI Fundamentals
+# What The Hack - Azure OpenAI Fundamentals - V2.1
 
 ## Introduction
 
@@ -29,7 +29,7 @@ Evaluate models for truthfulness and monitor for PII detection in model interact
 - Challenge 01: **[Prompt Engineering](Student/Challenge-01.md)**
 	 - What's possible through Prompt Engineering 
 	 - Best practices when using OpenAI text and chat models
-- Challenge 02: **[OpenAI Models & Capabilities](Student/Challenge-02.md)**
+- Challenge 02: **[OpenAI Models, Capabilities, and Model Router](Student/Challenge-02.md)**
 	 - What are the capacities of each Azure OpenAI model?
 	 - How to select the right model for your application
 - Challenge 03: **[Grounding, Chunking, and Embedding](Student/Challenge-03.md)**
@@ -41,12 +41,21 @@ Evaluate models for truthfulness and monitor for PII detection in model interact
 	 - What are services and tools to identify and evaluate harms and data leakage in LLMs?
 	 - What are ways to evaluate truthfulness and reduce hallucinations?
 What are methods to evaluate a model if you don't have a ground truth dataset for comparison?
+- Challenge 06: **[Agentic AI](Student/Challenge-06.md)**
+	- What is an agent? When should they be used?
+   	- What tools are available to extend an agents capabilities? 
 
 ## Prerequisites
 
 - Access to an Azure Subscription
 	- If you don't have one, [Sign Up for Azure HERE](https://azure.microsoft.com/en-us/free/) 
 - [Access to Azure OpenAI](https://customervoice.microsoft.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR7en2Ais5pxKtso_Pz4b1_xUOFA5Qk1UWDRBMjg0WFhPMkIzTzhKQ1dWNyQlQCN0PWcu)
+- [Access to GitHub Codespaces](https://github.com/signup)
+	- All GitHub users have free access to [GitHub Codespaces](https://docs.github.com/en/codespaces/overview), a cloud-hosted development environment that you access via web browser.
+	- If you don't have a GitHub account, [Sign up for GitHub here](https://github.com/signup).
+	- If you use GitHub Codespaces, you do NOT need to install ANY prerequisites on your local workstation!
+
+Students who wish to run this hack from their local workstation will require the following:
 - Jupyter Notebook editor (we recommend [Visual Studio Code](https://code.visualstudio.com/Download) or [Azure Machine Learning Studio](https://ml.azure.com/))
 	- If using Visual Studio Code, we also recommend installing [Anaconda](https://docs.anaconda.com/anaconda/install) OR [Miniconda](https://docs.anaconda.com/anaconda/install) for project environment management
 - [Python](https://www.python.org/downloads/) (version 3.7.1 or later), plus the package installer [pip](https://pypi.org/project/pip/)
@@ -60,3 +69,4 @@ What are methods to evaluate a model if you don't have a ground truth dataset fo
 - [Melody Yin](https://www.linkedin.com/in/melody-yue-yin/)
 - [Rachel Liu](https://www.linkedin.com/in/wanchen-rachel-liu-367a45177/)
 - [Shiva Chittamuru](https://www.linkedin.com/in/shivachittamuru/)
+- [Peter Laudati](https://github.com/jrzyshr)

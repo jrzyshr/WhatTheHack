@@ -22,10 +22,9 @@ There are six challenges, but only the first four require participants to genera
 - Challenge 01: **[Prompt Engineering](./Solution-01.md)**
 	 - What's possible through Prompt Engineering 
 	 - Best practices when using OpenAI text and chat models
-- Challenge 02: **[OpenAI Models & Capabilities](./Solution-02.md)**
-	 - This challenge is OPTIONAL.
+- Challenge 02: **[OpenAI Models, Capabilities, and Model Router](./Solution-02.md)**
    - What are the capacities of each Azure OpenAI model?
-	 - How to select the right model for your application
+	- How to select the right model for your application
 - Challenge 03: **[Grounding, Chunking, and Embedding](./Solution-03.md)**
 	 - Why is grounding important and how can you ground a Large Language Model (LLM)?
 	 - What is a token limit? How can you deal with token limits? What are techniques of chunking?
@@ -45,7 +44,14 @@ The guide covers the common preparation steps a coach needs to do before any Wha
 
 ### Student Resources
 
-Before the hack, it is the Coach's responsibility to download and package up the contents of the `/Student/Resources` folder of this hack into a "Resources.zip" file. The coach should then provide a copy of the Resources.zip file to all students at the start of the hack.
+This hack has been designed for students to run a Jupyter Notebook environment hosted in GitHub Codespaces. A separate GitHub repo containing the student resources and Codespace's configuration for this hack is hosted here:
+- [WTH OpenAI Fundamentals Codespace Repo](https://aka.ms/wth/openaifundamentals/codespace)
+
+A GitHub Codespace is a development environment that is hosted in the cloud that you access via a browser. All of the pre-requisite developer tools for this hack are pre-installed and available in the codespace. This makes it easy to complete this hack for students in organizations where they do not have the ability to install software packages on their local workstations.
+
+We highly recommend students use the GitHub Codespace to complete this hack.  If a student wants to set up their local workstation to complete the hack, the instructions for doing so are still listed in Challenge 00 of the student guide.
+
+The student resources required to run this hack from a local workstation are provided in a `Resources.zip` file that is hosted [here](https://aka.ms/wth/openaifundamentals/resources). Students are provided a link to this file in the Challenge 00 instructions of the student guide. 
 
 Always refer students to the [What The Hack website](https://aka.ms/wth) for the student guide: [https://aka.ms/wth](https://aka.ms/wth)
 
@@ -85,8 +91,8 @@ Here are some tips for doing this:
 - `./Student`
   - Student's Challenge Guide
   - `./Student/Resources`
-    - Resource files, sample code, scripts, etc meant to be provided to students. (Must be packaged up by the coach and provided to students at start of event)
+    - Resource files, sample code, scripts, etc meant to be provided to students.
     - `./Student/Resources/data`
       - Data resources for the Challenge Notebooks
-    - `./Student/Resources/Notebooks`
+    - `./Student/Resources/notebooks`
       - Challenge Jupyter Notebooks

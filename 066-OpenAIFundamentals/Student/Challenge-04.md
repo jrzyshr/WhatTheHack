@@ -4,11 +4,11 @@
 
 ## Pre-requisites 
 
-* Azure Form Recognizer resource for extracting text from raw unstructured data
-* Azure Cognitive Search resource for indexing and retrieving relevant information
-* Azure OpenAI service for Generative AI Models and Embedding Models
-* Add required credentials of above resources in .env file 
-* Install the required libraries in the `requirements.txt` file via ```pip install -r requirements.txt ```
+- Azure Form Recognizer resource for extracting text from raw unstructured data
+- Azure Cognitive Search resource for indexing and retrieving relevant information
+- Azure OpenAI service for Generative AI Models and Embedding Models
+- Add required credentials of above resources in `.env` file 
+- Install the required libraries in the `requirements.txt` file via ```pip install -r requirements.txt ``` if you have not already
 
 ## Introduction
 
@@ -22,22 +22,37 @@ RAG aims to overcome limitations found in purely generative models, including is
 
 Questions you should be able to answer by the end of the challenge:
 
-* How do we create ChatGPT-like experiences on Enterprise data? In other words, how do we "ground" powerful Large Language Models (LLMs) to primarily our own data?
-* Why is the combination of retrieval and generation steps so important and how do they allow integration of knowledge bases and LLMs for downstream AI tasks?
-* Given the token limit constraints, how does RAG approach help in dealing with long and complex documents?
-* How can this approach be applied to wide range of applications such as question answering, summarization, dialogue systems, and content generation?
+- How do we create ChatGPT-like experiences on Enterprise data? In other words, how do we "ground" powerful Large Language Models (LLMs) to primarily our own data?
+- Why is the combination of retrieval and generation steps so important and how do they allow integration of knowledge bases and LLMs for downstream AI tasks?
+- Given the token limit constraints, how does RAG approach help in dealing with long and complex documents?
+- How can this approach be applied to wide range of applications such as question answering, summarization, dialogue systems, and content generation?
 
 Some Considerations:
 
-* **Evaluation challenges:** Evaluating the performance of RAG poses challenges, as traditional metrics may not fully capture the improvements achieved through retrieval. Developing task-specific evaluation metrics or conducting human evaluations can provide more accurate assessments of the quality and effectiveness of the approach.
-* **Ethical considerations:** While RAG provides powerful capabilities, it also introduces ethical considerations. The retrieval component should be carefully designed and evaluated to avoid biased or harmful information retrieval. Additionally, the generated content should be monitored and controlled to ensure it aligns with ethical guidelines and does not propagate misinformation or harmful biases.
+- **Evaluation challenges:** Evaluating the performance of RAG poses challenges, as traditional metrics may not fully capture the improvements achieved through retrieval. Developing task-specific evaluation metrics or conducting human evaluations can provide more accurate assessments of the quality and effectiveness of the approach.
+- **Ethical considerations:** While RAG provides powerful capabilities, it also introduces ethical considerations. The retrieval component should be carefully designed and evaluated to avoid biased or harmful information retrieval. Additionally, the generated content should be monitored and controlled to ensure it aligns with ethical guidelines and does not propagate misinformation or harmful biases.
 
-You will run the following two Jupyter notebooks for this challenge. You can find them in the `/Notebooks` folder of `Resources.zip` file.
+### Exploring RAG in Jupyter Environment 
+You will run the following two Jupyter notebooks for this challenge:
 
-* `CH-04-A-RAG_for_structured_data.ipynb` 
-* `CH-04-B-RAG_for_unstructured_data.ipynb`
+- `CH-04-A-RAG_for_structured_data.ipynb` 
+- `CH-04-B-RAG_for_unstructured_data.ipynb`
 
+These files can be found in your Codespace under the `/notebooks` folder. 
+If you are working locally or in the Cloud, you can find them in the `/notebooks` folder of `Resources.zip` file. 
 
+To run a Jupyter notebook, navigate to it in your Codespace or open it in VS Code on your local workstation. You will find further instructions for the challenge, as well as in-line code blocks that you will interact with to complete the tasks for the challenge.  Return here to the student guide after completing all tasks in the Jupyter notebook to validate you have met the [success criteria](#success-criteria) below for this challenge.
+
+### Exploring RAG in Azure AI Foundry 
+Try RAG in the Azure AI Foundry portal with unstructured data. 
+1. This is the prerequisite to the following steps: Navigate to the [Azure Portal](https://portal.azure.com/#home) and find your resource group. Then navigate to the right storage account. On the left navigation, click `Networking`. Under `Firewalls and virtual networks`, select `Enabled from all networks`.
+2. Navigate to [Azure AI Foundry](https://ai.azure.com/) and `Playgrounds` in the left navigation. Find the `Chat Playground`.
+3. Feel free to keep the default model instructions or modify them.
+4. Click on `Add your data` and then `+ Add a new data source`. Let's choose `Upload files` from the drop down of different data sources for this exercise. Grab the data provided in your Codespace under the `/data` folder in `ch2_1.5_product_review.txt`.
+5. Click next and select your search service and vector index.On the next page, click `Add vector search to this search resource` and choose your AOAI Service connection. Finally, select `Create vector index`.
+6. Once complete, you should be able to chat with the data we added earlier.
+7. Ask **What are some of the features and functionalities of the Gally Smartwatch?**
+   
 ## Success Criteria
 
 To complete this challenge successfully, you should be able to:
