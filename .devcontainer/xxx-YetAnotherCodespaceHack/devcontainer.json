@@ -1,0 +1,35 @@
+// Customize this devcontainer.json with features and extensions for your hackathon.
+// See: https://containers.dev/implementors/json_reference/
+{
+  "name": "xxx-YetAnotherCodespaceHack",
+  "image": "mcr.microsoft.com/devcontainers/universal:2",
+  "workspaceFolder": "/workspace/xxx-YetAnotherCodespaceHack/Student/Resources",
+  "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind,consistency=cached",
+  "hostRequirements": {
+    "cpus": 2
+  },
+  "features": {
+    "ghcr.io/devcontainers/features/azure-cli:1": {},
+    "ghcr.io/azure/azure-dev/azd:latest": {},
+    "ghcr.io/devcontainers/features/python:1": {},
+    "ghcr.io/devcontainers/features/kubectl-helm-minikube:1": {
+      "kubectl": "latest",
+      "helm": "none",
+      "minikube": "none"
+    }
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-azuretools.vscode-bicep",
+        "ms-python.python",
+        "github.copilot",
+        "github.copilot-chat"
+      ]
+    },
+    // Add files here that should auto-open when a Codespace launches (e.g., "Student/Resources/README.md")
+    "codespaces": {
+      "openFiles": []
+    }
+  }
+}
