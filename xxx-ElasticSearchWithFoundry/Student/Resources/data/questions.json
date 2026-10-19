@@ -1,0 +1,7 @@
+[
+  {"id": "Q1", "query": "What support tier does Lumen Bikes have? Cite the source record."},
+  {"id": "Q2", "query": "What is the documented maximum batch size for Northstar Export? Cite the source record."},
+  {"id": "Q3", "query": "What is ticket TK-201's current status and workaround in the supplied snapshot? Cite the source record."},
+  {"id": "Q4", "query": "What is Gold support's initial response target, and is that a resolution guarantee? Cite the source record."},
+  {"id": "Q5", "query": "What was Lumen Bikes' last invoice payment amount? Explain any data limitations."}
+]
