@@ -4,7 +4,7 @@
 
 ## Introduction
 
-Northstar Support needs a copilot that can find trustworthy answers across several data sources. In this challenge you will prepare the three environments used for the rest of the hack: an Azure lab subscription (Microsoft Foundry), an Elastic Serverless trial (data and MCP tools), and a GitHub Codespace (your developer environment). One deployment script, run from the Codespace terminal, will load the sample data and create the Elastic MCP tools for you.
+Precision Labs' Support Copilot is built and hosted in Microsoft Foundry, and needs to find trustworthy answers in three data sets: CRM accounts, support tickets, and KB articles. In this challenge you will prepare the three environments used for the rest of the hack: an Azure lab subscription (Microsoft Foundry), an Elastic Serverless trial (data and MCP tools), and a GitHub Codespace (your developer environment). One deployment script, run from the Codespace terminal, will load the sample data and create the Elastic MCP tools for you.
 
 > **Draft notice:** This workshop has not been tested. Items shown as `<PLACEHOLDER>` will be provided by your event organizer before the event.
 
@@ -96,7 +96,7 @@ From the **Terminal** in your Codespace, complete the following:
 1. Open your **Kibana URL** in a browser and sign in.
 2. Confirm the sample indices exist:
    - Open **Index Management** (search for "Index Management" in the top search bar) and select the **Indices** tab.
-   - Find the four workshop indices whose names begin with `cq-`. Click each one and open the **Documents** tab (or use **Discover**) to confirm it contains records.
+   - Find the three workshop indices (CRM accounts, support tickets, and KB articles) whose names begin with `cq-`. Click each one and open the **Documents** tab (or use **Discover**) to confirm it contains records.
 
    `<PLACEHOLDER: Screenshot of the workshop indices in Index Management>`
 
@@ -112,7 +112,7 @@ From the **Terminal** in your Codespace, complete the following:
 - Verify that your Elastic trial project exists and that you have your Elasticsearch URL, Kibana URL, and API key.
 - Verify that your Codespace is running and that your `.env` file contains your Elastic values.
 - Verify that `./infra/deploy.sh` completed without errors.
-- Demonstrate in Kibana that the four workshop sample indices exist and contain documents.
+- Demonstrate in Kibana that the three workshop sample indices exist and contain documents.
 - Demonstrate in Kibana that the ES|QL MCP tools exist in Agent Builder.
 
 ## Learning Resources
