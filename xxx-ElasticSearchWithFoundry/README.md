@@ -40,4 +40,5 @@ Student resources include starter notebooks, bundled synthetic data, deployment 
 
 ## Contributors
 
+- [Peter Laudati](https://github.com/jrzyshr) 
 - GitHub Copilot (drafting assistance)
