@@ -4,53 +4,126 @@
 
 ## Introduction
 
-Northstar Support needs a copilot that can find trustworthy answers across several data sources. Your browser-hosted Codespace will run the notebooks, Microsoft Foundry will run your agents, and Elastic will host the data and MCP tools.
+Northstar Support needs a copilot that can find trustworthy answers across several data sources. In this challenge you will prepare the three environments used for the rest of the hack: an Azure lab subscription (Microsoft Foundry), an Elastic Serverless trial (data and MCP tools), and a GitHub Codespace (your developer environment). One deployment script, run from the Codespace terminal, will load the sample data and create the Elastic MCP tools for you.
 
-> **Draft notice:** This workshop has not been tested. Ask your event organizer for the confirmed service/region/model configuration before provisioning resources.
+> **Draft notice:** This workshop has not been tested. Items shown as `<PLACEHOLDER>` will be provided by your event organizer before the event.
 
 ## Common Prerequisites
 
-- An enabled [Azure subscription](../../000-HowToHack/WTH-Common-Prerequisites.md#azure-subscription).
-- A [GitHub Codespaces account and available usage](https://docs.github.com/en/codespaces/overview).
-- An [Elastic Cloud account](https://cloud.elastic.co/registration).
+- Access to the Azure lab environment provided for this event.
+- A [GitHub account](https://github.com/signup) (use your personal account, not an enterprise managed account).
+- An email address to create an [Elastic Cloud trial account](https://cloud.elastic.co/registration).
 
 ## Description
 
-### Before the event
+### Launch the Azure Lab Environment
 
-1. Sign in to Azure, or investigate the [Azure free-account offer](https://azure.microsoft.com/free/). Confirm an enabled subscription, model quota, and permissions with your administrator. Trial credits do not guarantee access to every model.
-2. Create or identify an Elastic **Elasticsearch Serverless** project. The organizer must confirm that your account can enable native Context Engine in the intended Kibana space, create AI Indices, run KI-generation automations, and use the required inference services. A generic Serverless trial is not proof of access.
-3. Confirm your Azure region supports the selected model, remote MCP, and [Foundry risk and safety evaluation](https://learn.microsoft.com/en-us/azure/foundry/concepts/evaluation-regions-limits-virtual-network). Do not assume an existing project's region supports all three.
-4. Confirm Azure permissions: resource creation if deploying; Foundry agent/evaluation access for notebook work; and connection-management permission for storing Elastic MCP credentials. An administrator must grant any missing roles.
+The in-person lab proctor will tell you how to launch your Azure lab environment and will provide your lab credentials.
 
-### In your workspace
+`<PLACEHOLDER: Azure lab launch instructions provided by the lab proctor>`
 
-1. Open the student-only Codespaces workspace supplied by your coach, or unpack Resources.zip in an equivalent Python/Jupyter environment. Do not expose a public Codespaces port: Foundry connects directly to Elastic's hosted MCP endpoint.
-2. Open `notebooks/00-Setup.ipynb` and select the provided Python kernel. Packages and Azure CLI are supplied by the devcontainer.
-3. Copy `.env.sample` to `.env`, choose a unique `WORKSHOP_ID`, and enter local configuration. Keep secrets out of chat, screenshots, notebook cells, and Git. The notebook reads configuration without printing credentials.
-4. Sign in with Azure CLI. Choose **attach existing** to reuse an approved Foundry project/model, or explicitly opt in to the provided **create new** deployment script. Do not deploy into a shared resource group.
-5. Supply the Elastic endpoints and setup API key. Run the provided data loader to populate four workshop indices. It uses stable document IDs and refuses indices without this workshop's ownership metadata.
-6. Configure separate read-only Foundry MCP connections for the baseline and Optimus using the supplied connection guidance. The baseline key must not read AI Index backing data. Inspect the advertised MCP tool names rather than guessing them.
-7. Record the readiness evidence in the setup notebook. Unavailable native Context Engine or evaluation access is a blocker to that learning objective, not a reason to substitute simulated success.
+Gather the following from the lab environment and keep them handy. You will use them in the Codespace terminal:
+
+1. Azure username (Spektra credentials)
+2. Azure password
+3. Azure subscription ID (if shown by the lab environment)
+
+### Create an Elastic Serverless Trial Environment
+
+1. Go to `<PLACEHOLDER: URL to create an Elastic trial>` and sign up for a free Elastic Cloud trial.
+2. When prompted to create a project, choose **Elasticsearch** as the project type and use the default settings.
+3. Wait for the project to finish creating, then open it.
+4. Gather your **Elasticsearch endpoint URL** and your **Kibana URL**. They are different URLs, and you will need both.
+
+   `<PLACEHOLDER: Screenshot showing where to find the Elasticsearch endpoint and Kibana URL>`
+
+5. Create an **API key** for the deployment script:
+   - In the project, go to **Developer Tools / API keys** (or search for "API keys" in the top search bar).
+   - Click **Create API key**, give it a name such as `wth-setup`, and keep the default privileges.
+   - Copy the **encoded** key value immediately. It is shown only once.
+
+   `<PLACEHOLDER: Screenshot showing where to create and copy the Elastic API key>`
+
+> **Warning:** Treat API keys like passwords. Do not paste them in chat, screenshots, or Git.
+
+### Launch Development Environment
+
+You will use [GitHub Codespaces](https://docs.github.com/en/codespaces/overview) as your development environment. A GitHub Codespace is a development environment hosted in the cloud that you access via a browser. All of the developer tools for this hack, including the Azure CLI and Python/Jupyter, are pre-installed.
+
+GitHub Codespaces is available to every personal GitHub.com account, which includes a monthly free usage quota. You can check your balance on the [GitHub billing page](https://github.com/settings/billing/summary).
+
+1. Open the Codespace for this hack: `<PLACEHOLDER: link to the hack's Codespace>`
+2. Sign in with your **personal** GitHub account.
+3. Verify the `Dev container configuration` is set to the one for this hack, then click **Create Codespace**.
+4. Wait for Visual Studio Code to load in your browser. The first launch takes approximately 3-5 minutes.
+
+**NOTE:** If you close the Codespace, return to [GitHub Codespaces](https://github.com/codespaces) to find and re-launch it.
+
+### Deploy Cloud Resources and Sample Data
+
+In this section, you will deploy the sample data for this hackathon.
+
+From the **Terminal** in your Codespace, complete the following:
+
+1. Log in to Azure with your lab credentials:
+
+   ```bash
+   az login
+   ```
+
+   The Codespace uses a device code. Open the URL shown, enter the code, and sign in with the Azure username and password from your lab environment. If your organization's policy blocks device-code login, open the Codespace in VS Code Desktop and run `CODESPACES=false az login`.
+
+2. Add your Elastic values to the configuration file used by the setup scripts:
+
+   ```bash
+   cp .env.sample .env
+   code .env
+   ```
+
+   Fill in your Elasticsearch endpoint URL, Kibana URL, and Elastic API key. Leave the other values as provided.
+
+3. Run the deployment script. It sets up the Elastic sample data and creates the Elastic MCP tools backed by ES|QL queries:
+
+   ```bash
+   chmod +x infra/deploy.sh
+   ./infra/deploy.sh
+   ```
+
+   Wait for the script to report success. If it fails, read the message, correct your `.env` file, and run it again.
+
+### Verify Your Elastic Environment in Kibana
+
+1. Open your **Kibana URL** in a browser and sign in.
+2. Confirm the sample indices exist:
+   - Open **Index Management** (search for "Index Management" in the top search bar) and select the **Indices** tab.
+   - Find the four workshop indices whose names begin with `cq-`. Click each one and open the **Documents** tab (or use **Discover**) to confirm it contains records.
+
+   `<PLACEHOLDER: Screenshot of the workshop indices in Index Management>`
+
+3. Confirm the MCP tools exist:
+   - Open **Agent Builder** from the navigation menu (or search for "Agent Builder") and go to **Tools**.
+   - Find the ES|QL tools created by the script. Open one to review its description and query.
+
+   `<PLACEHOLDER: Screenshot of the Tools list in Agent Builder>`
 
 ## Success Criteria
 
-- Verify that your notebook kernel imports the supplied libraries and Azure CLI targets the intended enabled subscription.
-- Verify that four workshop source indices contain the bundled records.
-- Show that native Context Engine is enabled in the intended Kibana space and that workflow/inference access is available.
-- Verify that Foundry can use your deployed model and discover Elastic MCP tools using a scoped connection.
-- Show which checks are complete and which remain unverified, including evaluation access.
-- Demonstrate where credentials are stored and which resources you will clean up.
+- Verify that you can sign in to the Azure lab environment and that `az account show` in the Codespace shows the lab subscription.
+- Verify that your Elastic trial project exists and that you have your Elasticsearch URL, Kibana URL, and API key.
+- Verify that your Codespace is running and that your `.env` file contains your Elastic values.
+- Verify that `./infra/deploy.sh` completed without errors.
+- Demonstrate in Kibana that the four workshop sample indices exist and contain documents.
+- Demonstrate in Kibana that the ES|QL MCP tools exist in Agent Builder.
 
 ## Learning Resources
 
-- [Elastic Context Engine quickstart](https://www.elastic.co/docs/explore-analyze/ai-features/context-engine/quickstart)
-- [Elastic MCP endpoint and authentication](https://www.elastic.co/docs/explore-analyze/ai-features/agent-builder/mcp-server)
-- [Connect Foundry agents to MCP endpoints](https://learn.microsoft.com/en-us/azure/foundry/agents/how-to/tools/model-context-protocol)
-- [Foundry evaluation region support](https://learn.microsoft.com/en-us/azure/foundry/concepts/evaluation-regions-limits-virtual-network)
+- [GitHub Codespaces Overview](https://docs.github.com/en/codespaces/overview)
+- [Elastic Cloud Serverless](https://www.elastic.co/docs/deploy-manage/deploy/elastic-cloud/serverless)
+- [Elastic Agent Builder tools](https://www.elastic.co/docs/explore-analyze/ai-features/agent-builder/tools)
+- [Elastic API keys](https://www.elastic.co/docs/deploy-manage/api-keys/elasticsearch-api-keys)
+- [Sign in with Azure CLI](https://learn.microsoft.com/en-us/cli/azure/authenticate-azure-cli)
 
 ## Tips
 
-- Your Elasticsearch URL and Kibana URL are different. Include the intended space in Kibana API requests.
-- Resource deployment permissions are different from model and agent data-plane permissions.
-- Use a dedicated workshop project where possible. A setup credential should never become an agent's runtime credential.
+- Your Elasticsearch URL and Kibana URL are different. Use the Kibana URL to browse the web interface.
+- The Elastic API key is shown only once. If you lose it, create a new one.
