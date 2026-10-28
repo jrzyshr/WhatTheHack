@@ -52,7 +52,7 @@ You will use [GitHub Codespaces](https://docs.github.com/en/codespaces/overview)
 
 GitHub Codespaces is available to every personal GitHub.com account, which includes a monthly free usage quota. You can check your balance on the [GitHub billing page](https://github.com/settings/billing/summary).
 
-1. Open the Codespace for this hack: `<PLACEHOLDER: link to the hack's Codespace>`
+1. Open the Codespace for this hack: [Elasticsearch with Foundry Codespace](https://aka.ms/wth/elasticfoundry/codespace)
 2. Sign in with your **personal** GitHub account.
 3. Verify the `Dev container configuration` is set to the one for this hack, then click **Create Codespace**.
 4. Wait for Visual Studio Code to load in your browser. The first launch takes approximately 3-5 minutes.

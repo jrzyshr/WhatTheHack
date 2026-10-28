@@ -1,4 +1,4 @@
-# Challenge 01 - Meet Agent Brute Force
+# Challenge 01 - Connect Foundry Agent to Elastic
 
 [< Previous Challenge](./Challenge-00.md) - **[Home](../README.md)** - [Next Challenge >](./Challenge-02.md)
 
@@ -12,13 +12,13 @@
 
 A support agent must decide which data to use before it can answer. Index names and mappings describe structure, but they do not always explain business meaning. The Model Context Protocol (MCP) lets Microsoft Foundry call Elastic tools without embedding a database client in the model.
 
-Agent Brute Force is our baseline, not a deliberately bad agent. It is connected to the Elastic MCP endpoint that exposes the individual workshop indices, so it has to discover which data to query before it can answer. In this challenge you will build it in the Microsoft Foundry portal, test it, and measure what it costs to answer questions.
+Agent Mole is going to have to dig around blindly in your data to find the answers. It is our baseline, not a deliberately bad agent. It is connected to the Elastic MCP endpoint that exposes the individual workshop indices, so it has to discover which data to query before it can answer. In this challenge you will build it in the Microsoft Foundry portal, test it, and measure what it costs to answer questions.
 
 > **Draft notice:** Portal menu labels change frequently. If a label below does not match what you see, look for the closest equivalent or ask your coach. Items shown as `<PLACEHOLDER>` will be provided by your event organizer.
 
 ## Description
 
-### Create Agent "Brute Force"
+### Create Agent "Mole"
 
 - Open [Microsoft Foundry](https://ai.azure.com) and sign in with the Azure credentials from your lab environment. Make sure the **New Foundry** experience toggle is on, if one is shown.
 - Select the Foundry project provided by your lab environment. `<PLACEHOLDER: lab project name, or instructions to create one>`
@@ -29,11 +29,11 @@ Agent Brute Force is our baseline, not a deliberately bad agent. It is connected
   - Wait until the deployment status is **Succeeded**.
 - **Create the agent:**
   - Go to **Agents** and select **Create agent** (or **New agent**).
-  - Name the agent `Brute-Force` (Foundry may not accept spaces in agent names).
+  - Name the agent `Mole` (Foundry may not accept spaces in agent names).
   - Select the model deployment you just created.
   - In the **Instructions** box, paste the system prompt provided below:
 
-    `<PLACEHOLDER: Agent Brute Force system prompt>`
+    `<PLACEHOLDER: Agent Mole system prompt>`
 
   - Save the agent.
 - **Get the Elastic MCP URL** from Kibana:
@@ -52,7 +52,7 @@ Agent Brute Force is our baseline, not a deliberately bad agent. It is connected
 
   `<PLACEHOLDER: Screenshot of the completed MCP tool connection in Foundry>`
 
-### Test Agent "Brute Force"
+### Test Agent "Mole"
 
 - Open the agent in the **Playground** (use **Try in playground** or the chat pane next to the agent).
 - Ask the agent each of these sample queries in a **new conversation** each time:
@@ -64,7 +64,7 @@ Agent Brute Force is our baseline, not a deliberately bad agent. It is connected
 - Verify the answer is based on Elastic data by finding the same records in Kibana **Discover** (or the index **Documents** tab).
 - Ask at least one question the sample data cannot answer, and observe whether the agent says so instead of guessing.
 
-### Observe Agent "Brute Force"
+### Observe Agent "Mole"
 
 Observe how many calls and tokens the agent needed. You will compare these numbers with Agent Optimus in the next challenge.
 
@@ -80,7 +80,7 @@ Observe how many calls and tokens the agent needed. You will compare these numbe
 
 ## Success Criteria
 
-- Verify that a Foundry agent named for **Brute Force** exists with a deployed model and the system prompt.
+- Verify that a Foundry agent named for **Mole** exists with a deployed model and the system prompt.
 - Verify that the agent has an Elastic MCP tool connected, with the Elastic tools listed.
 - Demonstrate at least one answer that uses data returned by a successful Elastic MCP tool call.
 - Show that the answer matches records you found in Kibana.

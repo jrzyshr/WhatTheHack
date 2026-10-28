@@ -3,61 +3,205 @@
   "sources": [
     {
       "suffix": "accounts",
-      "description": "Fictional customer accounts. account_id relates to customer_ref in tickets. support_tier is the contracted tier; this is not a billing or payment ledger.",
+      "description": "Fictional CRM accounts. account_id relates to customer_ref in tickets. support_tier is the contracted tier and matches tier in kb policy articles; this is not a billing or payment ledger.",
       "fields": {
-        "account_id": {"type": "keyword"},
-        "customer_name": {"type": "keyword"},
-        "support_tier": {"type": "keyword"},
-        "region": {"type": "keyword"}
+        "account_id": {
+          "type": "keyword"
+        },
+        "customer_name": {
+          "type": "keyword"
+        },
+        "support_tier": {
+          "type": "keyword"
+        },
+        "region": {
+          "type": "keyword"
+        }
       },
       "documents": [
-        {"record_id": "AC-101", "title": "Lumen Bikes account", "body": "Lumen Bikes operates in Europe and has Gold support.", "account_id": "AC-101", "customer_name": "Lumen Bikes", "support_tier": "Gold", "region": "Europe"},
-        {"record_id": "AC-102", "title": "Cedar Books account", "body": "Cedar Books operates in North America and has Standard support.", "account_id": "AC-102", "customer_name": "Cedar Books", "support_tier": "Standard", "region": "North America"},
-        {"record_id": "AC-103", "title": "Harbor Foods account", "body": "Harbor Foods operates in Asia Pacific and has Gold support.", "account_id": "AC-103", "customer_name": "Harbor Foods", "support_tier": "Gold", "region": "Asia Pacific"}
+        {
+          "record_id": "AC-101",
+          "title": "Lumen Bikes account",
+          "body": "Lumen Bikes operates in Europe and has Gold support.",
+          "account_id": "AC-101",
+          "customer_name": "Lumen Bikes",
+          "support_tier": "Gold",
+          "region": "Europe"
+        },
+        {
+          "record_id": "AC-102",
+          "title": "Cedar Books account",
+          "body": "Cedar Books operates in North America and has Standard support.",
+          "account_id": "AC-102",
+          "customer_name": "Cedar Books",
+          "support_tier": "Standard",
+          "region": "North America"
+        },
+        {
+          "record_id": "AC-103",
+          "title": "Harbor Foods account",
+          "body": "Harbor Foods operates in Asia Pacific and has Gold support.",
+          "account_id": "AC-103",
+          "customer_name": "Harbor Foods",
+          "support_tier": "Gold",
+          "region": "Asia Pacific"
+        }
       ]
     },
     {
       "suffix": "tickets",
-      "description": "Fictional support cases as of the bundled snapshot. customer_ref points to account_id; sku points to product_code. status is the current snapshot, not a historical event log.",
+      "description": "Fictional support cases as of the bundled snapshot. customer_ref points to account_id; sku points to product_code in kb. status is the current snapshot, not a historical event log.",
       "fields": {
-        "ticket_id": {"type": "keyword"},
-        "customer_ref": {"type": "keyword"},
-        "sku": {"type": "keyword"},
-        "status": {"type": "keyword"},
-        "severity": {"type": "keyword"}
+        "ticket_id": {
+          "type": "keyword"
+        },
+        "customer_ref": {
+          "type": "keyword"
+        },
+        "sku": {
+          "type": "keyword"
+        },
+        "status": {
+          "type": "keyword"
+        },
+        "severity": {
+          "type": "keyword"
+        }
       },
       "documents": [
-        {"record_id": "TK-201", "title": "Lumen Bikes export timeout", "body": "Nightly export times out for large reports. The case is open; the workaround is to reduce the export batch size.", "ticket_id": "TK-201", "customer_ref": "AC-101", "sku": "NS-EXPORT", "status": "open", "severity": "high"},
-        {"record_id": "TK-202", "title": "Lumen Bikes sign-in assistance", "body": "The sign-in question was resolved by correcting the account's tenant selection.", "ticket_id": "TK-202", "customer_ref": "AC-101", "sku": "NS-ACCESS", "status": "closed", "severity": "low"},
-        {"record_id": "TK-203", "title": "Cedar Books export question", "body": "Cedar Books requested documentation for scheduling a daily export. The documentation request is open.", "ticket_id": "TK-203", "customer_ref": "AC-102", "sku": "NS-EXPORT", "status": "open", "severity": "low"},
-        {"record_id": "TK-204", "title": "Harbor Foods audit view", "body": "The audit filter issue is resolved. The case is closed.", "ticket_id": "TK-204", "customer_ref": "AC-103", "sku": "NS-AUDIT", "status": "closed", "severity": "medium"}
+        {
+          "record_id": "TK-201",
+          "title": "Lumen Bikes export timeout",
+          "body": "Nightly export times out for large reports. The case is open; the workaround is to reduce the export batch size.",
+          "ticket_id": "TK-201",
+          "customer_ref": "AC-101",
+          "sku": "NS-EXPORT",
+          "status": "open",
+          "severity": "high"
+        },
+        {
+          "record_id": "TK-202",
+          "title": "Lumen Bikes sign-in assistance",
+          "body": "The sign-in question was resolved by correcting the account's tenant selection.",
+          "ticket_id": "TK-202",
+          "customer_ref": "AC-101",
+          "sku": "NS-ACCESS",
+          "status": "closed",
+          "severity": "low"
+        },
+        {
+          "record_id": "TK-203",
+          "title": "Cedar Books export question",
+          "body": "Cedar Books requested documentation for scheduling a daily export. The documentation request is open.",
+          "ticket_id": "TK-203",
+          "customer_ref": "AC-102",
+          "sku": "NS-EXPORT",
+          "status": "open",
+          "severity": "low"
+        },
+        {
+          "record_id": "TK-204",
+          "title": "Harbor Foods audit view",
+          "body": "The audit filter issue is resolved. The case is closed.",
+          "ticket_id": "TK-204",
+          "customer_ref": "AC-103",
+          "sku": "NS-AUDIT",
+          "status": "closed",
+          "severity": "medium"
+        }
       ]
     },
     {
-      "suffix": "products",
-      "description": "Fictional product catalog and limits. product_code relates to sku in tickets. These notes describe capabilities, not customer-specific entitlements or service status.",
+      "suffix": "kb",
+      "description": "Fictional knowledge base (KB) articles covering product limits and support policies. product_code relates to sku in tickets; tier matches support_tier in accounts. Initial response targets are not guaranteed resolution times. There is no payment, payroll, or refund-approval dataset.",
       "fields": {
-        "product_code": {"type": "keyword"},
-        "product_name": {"type": "keyword"}
+        "article_id": {
+          "type": "keyword"
+        },
+        "category": {
+          "type": "keyword"
+        },
+        "product_code": {
+          "type": "keyword"
+        },
+        "product_name": {
+          "type": "keyword"
+        },
+        "tier": {
+          "type": "keyword"
+        }
       },
       "documents": [
-        {"record_id": "PR-301", "title": "Northstar Export limits", "body": "Northstar Export supports scheduled CSV exports. The documented maximum export batch size is 5000 records. For timeout investigations, reduce the batch size and include the job ID in the support case.", "product_code": "NS-EXPORT", "product_name": "Northstar Export"},
-        {"record_id": "PR-302", "title": "Northstar Access overview", "body": "Northstar Access supports single sign-on. It does not store customer passwords in support tickets.", "product_code": "NS-ACCESS", "product_name": "Northstar Access"},
-        {"record_id": "PR-303", "title": "Northstar Audit retention", "body": "Northstar Audit retains audit events for 30 days in this fictional product. This retention is unrelated to support-ticket retention.", "product_code": "NS-AUDIT", "product_name": "Northstar Audit"}
-      ]
-    },
-    {
-      "suffix": "policies",
-      "description": "Fictional support policies. tier matches support_tier in accounts. Initial response targets are not guaranteed resolution times. There is no payment, payroll, or refund-approval dataset.",
-      "fields": {
-        "policy_id": {"type": "keyword"},
-        "tier": {"type": "keyword"}
-      },
-      "documents": [
-        {"record_id": "PO-401", "title": "Gold initial response", "body": "Gold support has a one-business-hour initial response target. This is not a promise of issue resolution within one hour.", "policy_id": "PO-401", "tier": "Gold"},
-        {"record_id": "PO-402", "title": "Standard initial response", "body": "Standard support has a one-business-day initial response target. This is not a resolution-time guarantee.", "policy_id": "PO-402", "tier": "Standard"},
-        {"record_id": "PO-403", "title": "Support ticket retention", "body": "Support tickets are retained for 90 days in this fictional policy. This is distinct from Northstar Audit's event retention.", "policy_id": "PO-403", "tier": "All"},
-        {"record_id": "PO-404", "title": "Refund approval boundary", "body": "Support agents may explain policies but cannot approve refunds. Refund status must be checked with the billing team; no refund ledger is available here.", "policy_id": "PO-404", "tier": "All"}
+        {
+          "record_id": "KB-301",
+          "title": "Precision Export limits",
+          "body": "Precision Export supports scheduled CSV exports. The documented maximum export batch size is 5000 records. For timeout investigations, reduce the batch size and include the job ID in the support case.",
+          "product_code": "NS-EXPORT",
+          "product_name": "Precision Export",
+          "category": "product",
+          "tier": "All",
+          "article_id": "KB-301"
+        },
+        {
+          "record_id": "KB-302",
+          "title": "Precision Access overview",
+          "body": "Precision Access supports single sign-on. It does not store customer passwords in support tickets.",
+          "product_code": "NS-ACCESS",
+          "product_name": "Precision Access",
+          "category": "product",
+          "tier": "All",
+          "article_id": "KB-302"
+        },
+        {
+          "record_id": "KB-303",
+          "title": "Precision Audit retention",
+          "body": "Precision Audit retains audit events for 30 days in this fictional product. This retention is unrelated to support-ticket retention.",
+          "product_code": "NS-AUDIT",
+          "product_name": "Precision Audit",
+          "category": "product",
+          "tier": "All",
+          "article_id": "KB-303"
+        },
+        {
+          "record_id": "KB-401",
+          "title": "Gold initial response",
+          "body": "Gold support has a one-business-hour initial response target. This is not a promise of issue resolution within one hour.",
+          "tier": "Gold",
+          "category": "policy",
+          "product_code": "N/A",
+          "article_id": "KB-401",
+          "product_name": "N/A"
+        },
+        {
+          "record_id": "KB-402",
+          "title": "Standard initial response",
+          "body": "Standard support has a one-business-day initial response target. This is not a resolution-time guarantee.",
+          "tier": "Standard",
+          "category": "policy",
+          "product_code": "N/A",
+          "article_id": "KB-402",
+          "product_name": "N/A"
+        },
+        {
+          "record_id": "KB-403",
+          "title": "Support ticket retention",
+          "body": "Support tickets are retained for 90 days in this fictional policy. This is distinct from Precision Audit's event retention.",
+          "tier": "All",
+          "category": "policy",
+          "product_code": "N/A",
+          "article_id": "KB-403",
+          "product_name": "N/A"
+        },
+        {
+          "record_id": "KB-404",
+          "title": "Refund approval boundary",
+          "body": "Support agents may explain policies but cannot approve refunds. Refund status must be checked with the billing team; no refund ledger is available here.",
+          "tier": "All",
+          "category": "policy",
+          "product_code": "N/A",
+          "article_id": "KB-404",
+          "product_name": "N/A"
+        }
       ]
     }
   ]

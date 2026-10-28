@@ -15,7 +15,7 @@ For an equivalent local environment, use Python 3.12, install `requirements.txt`
 | Notebook | Purpose |
 |---|---|
 | `00-Setup.ipynb` | Configure your environments, opt into provisioning, seed data, and record readiness. |
-| `01-Brut-Force.ipynb` | Configure a baseline Foundry agent and collect live discovery evidence. |
+| `01-Agent-Mole.ipynb` | Configure a baseline Foundry agent and collect live discovery evidence. |
 | `02-Context-Engine.ipynb` | Build the AI Index and KIs, and retrieve the Context Engine MCP endpoint. |
 | `04-Evaluate.ipynb` | Retrieve isolated safety fixtures and submit a proposed Foundry evaluation. |
 | `99-Cleanup.ipynb` | Review resource ownership and explicitly clean up your workshop. |
@@ -33,7 +33,7 @@ Elastic setup and agent credentials serve different purposes:
 | Credential | Intended scope |
 |---|---|
 | Setup API key | Create/write only workshop-owned source indices; configure native Context Engine and automations in the intended space. |
-| Baseline runtime key | Read and view metadata for the four workshop sources, plus the safety fixture index after activation; use relevant read-only MCP tools. No AI Index read access. |
+| Baseline runtime key | Read and view metadata for the three workshop sources, plus the safety fixture index after activation; use relevant read-only MCP tools. No AI Index read access. |
 | Optimus runtime key | Same source permissions, plus Context Engine read privilege and read/metadata access on the exact AI Index backing data. |
 
 Avoid wildcard privileges over an existing project. A Foundry tool allowlist is not a database authorization boundary; enforce scope with Elastic credentials. Serverless role configuration may differ from hosted Stack examples.

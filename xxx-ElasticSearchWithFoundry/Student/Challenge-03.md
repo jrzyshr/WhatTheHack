@@ -6,7 +6,7 @@
 
 - Completed Challenge 02 and have the Context Engine MCP endpoint URL.
 - Your Elastic API key from Challenge 00.
-- Your Agent Brute Force results table from Challenge 01.
+- Your Agent Mole results table from Challenge 01.
 
 ## Introduction
 
@@ -20,7 +20,7 @@ Agent Optimus uses the Context Engine and its AI Index to understand your data b
 
 - Open [Microsoft Foundry](https://ai.azure.com) and select your lab project.
 - Go to **Agents** and create a new agent named `Optimus`.
-- Select the same model deployment you used for Agent Brute Force.
+- Select the same model deployment you used for Agent Mole.
 - In **Instructions**, paste the system prompt provided below:
 
   `<PLACEHOLDER: Agent Optimus system prompt>`
@@ -33,7 +33,7 @@ Agent Optimus uses the Context Engine and its AI Index to understand your data b
 ### Test Agent "Optimus"
 
 - Open Optimus in the **Playground**.
-- Ask the same sample queries you used with Agent Brute Force, each in a **new conversation**:
+- Ask the same sample queries you used with Agent Mole, each in a **new conversation**:
 
   `<PLACEHOLDER: list of sample queries>`
 
@@ -44,14 +44,14 @@ Agent Optimus uses the Context Engine and its AI Index to understand your data b
 ### Observe Agent "Optimus"
 
 - Collect the same measurements as in Challenge 01: MCP calls, input tokens, output tokens, and total tokens, using the response details and **Tracing**.
-- Add Optimus rows to your results table next to the Agent Brute Force results.
+- Add Optimus rows to your results table next to the Agent Mole results.
 - Compare correctness, citations, calls, tokens, and latency. Explain the tradeoff, even if savings are small or negative.
 
 ## Success Criteria
 
 - Verify that a Foundry agent named **Optimus** exists with a deployed model and the Context Engine MCP tool connected.
 - Demonstrate at least one answer that uses KI context from the AI Index and current data from Elastic.
-- Show a side-by-side comparison of Brute Force and Optimus for the same questions.
+- Show a side-by-side comparison of Mole and Optimus for the same questions.
 - Explain the observed difference in calls and tokens, including any added overhead.
 - Demonstrate that Optimus can acknowledge a question the data cannot answer.
 

@@ -1,4 +1,4 @@
-# Challenge 01 - Meet Agent Brute Force - Coach's Guide
+# Challenge 01 - Connect Foundry Agent to Elastic - Coach's Guide
 
 [< Previous Solution](./Solution-00.md) - **[Home](./README.md)** - [Next Solution >](./Solution-02.md)
 
@@ -10,7 +10,7 @@ Explain discovery versus retrieval before discussing tokens. A competent baselin
 
 In the student's configuration cell, one appropriate selection is `selected_tools = tool_names('baseline')` after inspecting each advertised schema and verifying the `.env` entries identify list-indices, mapping, and ES|QL tools. Use the baseline connection, never the setup credential.
 
-The supplied `base_prompt()` scopes exact source names, caps retrieval results, requests record IDs, and acknowledges unknown facts. The notebook creates a Foundry prompt-agent version and invokes it through the Responses API. It uses an API-safe `Agent-Brut-Force-<workshop>` name.
+The supplied `base_prompt()` scopes exact source names, caps retrieval results, requests record IDs, and acknowledges unknown facts. The notebook creates a Foundry prompt-agent version and invokes it through the Responses API. It uses an API-safe `Agent-Mole-<workshop>` name.
 
 Run the common questions in fresh conversations and keep the exported evidence. Let the model choose normal discovery; do not add instructions to inspect every mapping.
 

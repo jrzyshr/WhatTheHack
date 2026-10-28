@@ -21,7 +21,7 @@ FILES = (
     "infra/main.bicep",
     "infra/deploy.sh",
     "notebooks/00-Setup.ipynb",
-    "notebooks/01-Brut-Force.ipynb",
+    "notebooks/01-Agent-Mole.ipynb",
     "notebooks/02-Context-Engine.ipynb",
     "notebooks/04-Evaluate.ipynb",
     "notebooks/99-Cleanup.ipynb",

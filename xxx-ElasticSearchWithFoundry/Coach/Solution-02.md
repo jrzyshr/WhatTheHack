@@ -8,7 +8,7 @@ An AI Index is a managed store of reusable context, not a merged table or a magi
 
 ### One solution path
 
-Use the native Context UI and the supplied automation brief. Register exactly the four clean workshop sources. Review the generated Index/Table Metadata automation and run it. If it generates metadata for only one source, configure the remaining sources' automations into the same AI Index. Do not create a raw index and claim native completion.
+Use the native Context UI and the supplied automation brief. Register exactly the three clean workshop sources. Review the generated Index/Table Metadata automation and run it. If it generates metadata for only one source, configure the remaining sources' automations into the same AI Index. Do not create a raw index and claim native completion.
 
 Inspect source coverage, business definitions, limitations, and verified example queries. The provided field relationships and `_meta.description` values are intended to improve generation quality. Capture a validated native automation export before delivery; this draft contains a generation brief, not an importable tested YAML workflow.
 

@@ -4,7 +4,7 @@
 
 ## Pre-requisites
 
-Complete Challenge 01 and confirm Foundry safety-evaluation access. Optimus (Challenge 03) is preferred, but you may use the Brute Force agent if Challenges 02 and 03 are blocked; that does not complete the native Context Engine objective.
+Complete Challenge 01 and confirm Foundry safety-evaluation access. Optimus (Challenge 03) is preferred, but you may use the Mole agent if Challenges 02 and 03 are blocked; that does not complete the native Context Engine objective.
 
 ## Introduction
 

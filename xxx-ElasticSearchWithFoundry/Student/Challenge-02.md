@@ -4,20 +4,20 @@
 
 ## Pre-requisites
 
-- Completed Challenge 01 and recorded your Agent Brute Force results.
+- Completed Challenge 01 and recorded your Agent Mole results.
 - Your Codespace from Challenge 00 with a populated `.env` file.
 - Native Context Engine available in your Kibana space.
 
 ## Introduction
 
-Agent Brute Force had to discover your data before it could answer. Elastic's Context Engine moves that recurring interpretation out of the agent's question-answering loop. Its automations generate **Knowledge Indicators (KIs)** with reusable descriptions, limitations, and query guidance. One **AI Index** can hold context about several source indices; it does not merge or replace their source documents.
+Agent Mole had to discover your data before it could answer. Elastic's Context Engine moves that recurring interpretation out of the agent's question-answering loop. Its automations generate **Knowledge Indicators (KIs)** with reusable descriptions, limitations, and query guidance. One **AI Index** can hold context about several source indices; it does not merge or replace their source documents.
 
 In this challenge you will build the AI Index and its KIs, and retrieve the MCP endpoint that Agent Optimus will use in the next challenge. Building and refreshing context has a cost, so reduced per-question discovery is a hypothesis to measure, not a given.
 
 ## Description
 
 - Open `notebooks/02-Context-Engine.ipynb` in your Codespace and select the provided Python kernel.
-- Follow the notebook to configure a native AI Index with your four workshop sources and run the metadata-generation automation.
+- Follow the notebook to configure a native AI Index with your three workshop sources and run the metadata-generation automation.
 - Inspect the generated KIs. Be ready to explain one useful routing clue and one limitation.
 - Retrieve the **Context Engine MCP endpoint**. The notebook prints it in its final cell. You can also locate it in Kibana under **Agent Builder**. Copy it somewhere safe: you will need it in Challenge 03.
 

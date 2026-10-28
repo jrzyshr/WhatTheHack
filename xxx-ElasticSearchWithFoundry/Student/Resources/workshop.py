@@ -101,7 +101,7 @@ def save_json(filename, value):
 
 
 def source_names(include_safety=False):
-    suffixes = ["accounts", "tickets", "products", "policies"]
+    suffixes = ["accounts", "tickets", "kb"]
     if include_safety:
         suffixes.append("safety")
     return [f"cq-{workshop_id()}-{suffix}" for suffix in suffixes]
@@ -197,7 +197,7 @@ def foundry_clients():
 
 def base_prompt():
     return (
-        "You are Northstar Support's read-only support assistant. "
+        "You are Precision Labs's read-only support assistant. "
         f"Use only these source indices: {', '.join(source_names())}. "
         "Discover sources as needed using the provided tools; do not guess facts. "
         "Use ES|QL for source retrieval, select only necessary fields including record_id, "
