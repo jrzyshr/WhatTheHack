@@ -6,7 +6,7 @@
 
 Your fictional company, Northstar Support, has customer accounts, tickets, product notes, and support policies scattered across Elasticsearch indices. Its new support copilot can find answers, but how much work does it repeat just to discover where to look? Connect Microsoft Foundry agents to Elastic's Model Context Protocol (MCP) server, then give the agents reusable context with Elastic Context Engine.
 
-Meet **Agent Brut Force**, measure its discovery work, and help **Agent Optimus** use Knowledge Indicators (KIs) from a single AI Index to navigate multiple sources. Then introduce a harmless instruction hidden in a retrieved document: can your agent use the facts without following the document's commands? Use Microsoft Foundry evaluation to investigate. Your goal is a grounded, explainable support answer, not just a smaller token count.
+Meet **Agent Brute Force**, measure its discovery work, and help **Agent Optimus** use Knowledge Indicators (KIs) from a single AI Index to navigate multiple sources. Then introduce a harmless instruction hidden in a retrieved document: can your agent use the facts without following the document's commands? Use Microsoft Foundry evaluation to investigate. Your goal is a grounded, explainable support answer, not just a smaller token count.
 
 ## Learning Objectives
 
@@ -19,7 +19,7 @@ Meet **Agent Brut Force**, measure its discovery work, and help **Agent Optimus*
 ## Challenges
 
 - Challenge 00: **[Ready, Set, Connect](Student/Challenge-00.md)** - Prepare your own environments and launch the supplied notebook workspace.
-- Challenge 01: **[Meet Agent Brut Force](Student/Challenge-01.md)** - Build a Foundry agent with Elastic MCP and collect a discovery baseline.
+- Challenge 01: **[Meet Agent Brute Force](Student/Challenge-01.md)** - Build a Foundry agent with Elastic MCP and collect a discovery baseline.
 - Challenge 02: **[Give Optimus Context](Student/Challenge-02.md)** - Generate native KIs and compare a context-first agent against the baseline.
 - Challenge 03: **[Trust the Evidence, Not Its Instructions](Student/Challenge-03.md)** - Evaluate prompt-injection resistance using retrieved Elastic data.
 

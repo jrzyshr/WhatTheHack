@@ -13,7 +13,7 @@ The core targets the requested 2-3-hour event format through pre-event account r
 ## Coach's Guides
 
 - **[Challenge 00 - Ready, Set, Connect](./Solution-00.md)** - Access checks, deployment/attach paths, and scoped connections.
-- **[Challenge 01 - Meet Agent Brut Force](./Solution-01.md)** - Baseline agent, source references, and traces.
+- **[Challenge 01 - Meet Agent Brute Force](./Solution-01.md)** - Baseline agent, source references, and traces.
 - **[Challenge 02 - Give Optimus Context](./Solution-02.md)** - Native AI Index/KIs, routing, and fair comparison.
 - **[Challenge 03 - Trust the Evidence](./Solution-03.md)** - Captured tool context, hosted evaluation, and trust boundaries.
 

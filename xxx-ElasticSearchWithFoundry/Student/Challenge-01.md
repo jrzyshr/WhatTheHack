@@ -1,48 +1,107 @@
-# Challenge 01 - Meet Agent Brut Force
+# Challenge 01 - Meet Agent Brute Force
 
 [< Previous Challenge](./Challenge-00.md) - **[Home](../README.md)** - [Next Challenge >](./Challenge-02.md)
 
 ## Pre-requisites
 
-Complete Challenge 00 with working source data, a Foundry model deployment, and a read-only Elastic MCP connection.
+- Completed Challenge 00: your Elastic sample indices and ES|QL MCP tools exist in Kibana.
+- Your Elastic **Kibana URL** and **Elastic API key** from Challenge 00.
+- Your Azure lab credentials.
 
 ## Introduction
 
-A support agent must decide which data to use before it can answer. Index names and mappings describe structure, but they do not always explain business meaning. MCP lets Foundry call Elastic tools without embedding a database client in the model.
+A support agent must decide which data to use before it can answer. Index names and mappings describe structure, but they do not always explain business meaning. The Model Context Protocol (MCP) lets Microsoft Foundry call Elastic tools without embedding a database client in the model.
 
-Agent Brut Force is our baseline, not a deliberately bad agent. Let it use normal discovery and retrieval tools; do not force it to scan every index.
+Agent Brute Force is our baseline, not a deliberately bad agent. It is connected to the Elastic MCP endpoint that exposes the individual workshop indices, so it has to discover which data to query before it can answer. In this challenge you will build it in the Microsoft Foundry portal, test it, and measure what it costs to answer questions.
+
+> **Draft notice:** Portal menu labels change frequently. If a label below does not match what you see, look for the closest equivalent or ask your coach. Items shown as `<PLACEHOLDER>` will be provided by your event organizer.
 
 ## Description
 
-Use `notebooks/01-Brut-Force.ipynb` in the supplied Codespace or Resources.zip. Complete the MCP tool selection, create a Foundry agent using the provided system prompt, and answer the bundled support questions with source references.
+### Create Agent "Brute Force"
 
-- Limit the tool list to discovery and read-only queries against your workshop sources.
-- Collect actual tool calls, service-reported token usage, and final answers in fresh conversations.
-- Inspect whether a query needs source discovery, current data, or an honest out-of-scope answer.
+- Open [Microsoft Foundry](https://ai.azure.com) and sign in with the Azure credentials from your lab environment. Make sure the **New Foundry** experience toggle is on, if one is shown.
+- Select the Foundry project provided by your lab environment. `<PLACEHOLDER: lab project name, or instructions to create one>`
+- **Deploy a model** to power the agent:
+  - Go to **Models + endpoints** (or **Model catalog**) and select **Deploy a base model**.
+  - Search for `gpt-5-mini` (a small, low-cost reasoning model) and select **Confirm**. If it is unavailable in your lab region or quota, use the model your coach recommends. `<PLACEHOLDER: confirmed model for the lab>`
+  - Select **Deploy** using the **Global Standard** deployment type and the default settings.
+  - Wait until the deployment status is **Succeeded**.
+- **Create the agent:**
+  - Go to **Agents** and select **Create agent** (or **New agent**).
+  - Name the agent `Brute-Force` (Foundry may not accept spaces in agent names).
+  - Select the model deployment you just created.
+  - In the **Instructions** box, paste the system prompt provided below:
 
-Before running a question, predict its likely source. Afterwards, explain a discovery call to your coach and record whether the final answer is correct and supported. Preserve these runs for the Optimus comparison.
+    `<PLACEHOLDER: Agent Brute Force system prompt>`
+
+  - Save the agent.
+- **Get the Elastic MCP URL** from Kibana:
+  - Open your Kibana URL in another browser tab.
+  - Open **Agent Builder**, go to **Tools**, and select **Manage MCP** (or **MCP server**), then **Copy MCP Server URL**.
+  - If you cannot find the button, build the URL yourself: `<YOUR_KIBANA_URL>/api/agent_builder/mcp`.
+
+  `<PLACEHOLDER: Screenshot showing where to copy the MCP server URL in Kibana>`
+
+- **Connect the agent to Elastic:**
+  - Back in your agent in Foundry, find **Tools** and select **Add**, then choose **Custom** and **Model Context Protocol (MCP)**.
+  - Enter a name such as `elastic-mcp` and paste the **MCP server URL** as the remote MCP endpoint.
+  - Set the authentication to **Key-based**. Add a credential with the key name `Authorization` and the value `ApiKey <your Elastic API key>` (replace the placeholder with your encoded key from Challenge 00; keep the word `ApiKey` and the space).
+  - Select **Connect** (or **Create**) and confirm the Elastic tools are listed. If the tool list shows an error, re-check the URL and key.
+  - Leave tool approval enabled so that you can inspect each call.
+
+  `<PLACEHOLDER: Screenshot of the completed MCP tool connection in Foundry>`
+
+### Test Agent "Brute Force"
+
+- Open the agent in the **Playground** (use **Try in playground** or the chat pane next to the agent).
+- Ask the agent each of these sample queries in a **new conversation** each time:
+
+  `<PLACEHOLDER: list of sample queries>`
+
+- When the agent asks for approval to run an MCP tool, expand the request, review the tool name and arguments, and approve it only if it is a read-only call against your workshop data.
+- After each answer, expand the tool-call details in the response to see which Elastic tools were called and in what order.
+- Verify the answer is based on Elastic data by finding the same records in Kibana **Discover** (or the index **Documents** tab).
+- Ask at least one question the sample data cannot answer, and observe whether the agent says so instead of guessing.
+
+### Observe Agent "Brute Force"
+
+Observe how many calls and tokens the agent needed. You will compare these numbers with Agent Optimus in the next challenge.
+
+- In the Playground, open the details for a response (for example **View run info**, **Thread info**, or **Metrics**) and note the **input tokens**, **output tokens**, and **total tokens** where shown.
+- In your Foundry project, open **Tracing** (under **Observability**). Open the trace for a conversation and count how many MCP tool calls were made before the final answer. `<PLACEHOLDER: instructions to enable tracing/Application Insights, if not pre-configured by the lab>`
+- Look for aggregate token and cost metrics in **Monitoring** (under **Observability**), or in **Models + endpoints** by selecting your model deployment and opening its **Metrics** tab.
+- As an alternative for cost, open your subscription in the Azure portal under **Cost Management**. Cost data can lag by many hours, so token counts are the more reliable measure in a short workshop.
+- Record your observations in a table like this for each sample query:
+
+  | Query | MCP calls | Input tokens | Output tokens | Total tokens | Answer correct and supported? |
+  | --- | --- | --- | --- | --- | --- |
+  | `<query>` | | | | | |
 
 ## Success Criteria
 
-- Show a Foundry agent named for **Agent Brut Force** with the scoped Elastic MCP connection.
-- Verify that at least one answer uses data returned by a successful Elastic MCP call.
-- Show source references supporting the answer, not just a plausible response.
-- Show the recorded tool trace and input/output/total token usage, or explicitly identify missing telemetry.
-- Demonstrate that the baseline cannot retrieve KIs and can acknowledge an unsupported question.
+- Verify that a Foundry agent named for **Brute Force** exists with a deployed model and the system prompt.
+- Verify that the agent has an Elastic MCP tool connected, with the Elastic tools listed.
+- Demonstrate at least one answer that uses data returned by a successful Elastic MCP tool call.
+- Show that the answer matches records you found in Kibana.
+- Show your table of MCP calls and input, output, and total tokens for each sample query, or identify which telemetry was unavailable.
+- Demonstrate that the agent can acknowledge a question the data cannot answer.
 
 ## Learning Resources
 
-- [Elastic built-in tools](https://www.elastic.co/docs/explore-analyze/ai-features/agent-builder/tools/builtin-tools-reference)
-- [Microsoft Foundry MCP integration](https://learn.microsoft.com/en-us/azure/foundry/agents/how-to/tools/model-context-protocol)
-- [ES|QL query language](https://www.elastic.co/docs/explore-analyze/query-filter/languages/esql)
+- [Connect Foundry agents to MCP server endpoints](https://learn.microsoft.com/en-us/azure/foundry/agents/how-to/tools/model-context-protocol)
+- [Set up MCP server authentication in Foundry](https://learn.microsoft.com/en-us/azure/foundry/agents/how-to/mcp-authentication)
+- [Elastic Agent Builder MCP server](https://www.elastic.co/docs/explore-analyze/ai-features/agent-builder/mcp-server)
+- [Elastic Agent Builder built-in tools](https://www.elastic.co/docs/explore-analyze/ai-features/agent-builder/tools/builtin-tools-reference)
 
 ## Tips
 
-- Only approve expected, read-only calls. Check the server, tool, and arguments.
+- Only approve expected, read-only calls. Check the server, tool, and arguments before approving.
+- Treat the Elastic API key like a password. Do not paste it in chat or screenshots.
 - A low token count is not success if the answer was guessed or retrieval failed.
-- Tool calls and model tokens are different measurements. MCP tool discovery can also have overhead.
+- Tool calls and model tokens are different measurements. MCP tool discovery can also add overhead.
 
 ## Advanced Challenges
 
-- Ask a new support question and explain why it selects a different index.
-- Repeat a question in fresh conversations and compare variation without cherry-picking the cheapest result.
+- Ask the same question in several fresh conversations and compare the variation without picking only the cheapest result.
+- Ask a new support question and explain why the agent picks a different index.
