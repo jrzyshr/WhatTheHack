@@ -16,8 +16,8 @@ For an equivalent local environment, use Python 3.12, install `requirements.txt`
 |---|---|
 | `00-Setup.ipynb` | Configure your environments, opt into provisioning, seed data, and record readiness. |
 | `01-Brut-Force.ipynb` | Configure a baseline Foundry agent and collect live discovery evidence. |
-| `02-Optimus.ipynb` | Inspect native KIs, configure context-first access, and compare agents. |
-| `03-Evaluate.ipynb` | Retrieve isolated safety fixtures and submit a proposed Foundry evaluation. |
+| `02-Context-Engine.ipynb` | Build the AI Index and KIs, and retrieve the Context Engine MCP endpoint. |
+| `04-Evaluate.ipynb` | Retrieve isolated safety fixtures and submit a proposed Foundry evaluation. |
 | `99-Cleanup.ipynb` | Review resource ownership and explicitly clean up your workshop. |
 
 Run each notebook from its own beginning. It loads its own configuration, so kernels do not need to share state. Student decision cells are intentionally incomplete; learning means choosing and explaining the configuration, not running every cell unchanged.

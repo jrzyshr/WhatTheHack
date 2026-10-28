@@ -14,8 +14,9 @@ The core targets the requested 2-3-hour event format through pre-event account r
 
 - **[Challenge 00 - Ready, Set, Connect](./Solution-00.md)** - Access checks, deployment/attach paths, and scoped connections.
 - **[Challenge 01 - Meet Agent Brute Force](./Solution-01.md)** - Baseline agent, source references, and traces.
-- **[Challenge 02 - Give Optimus Context](./Solution-02.md)** - Native AI Index/KIs, routing, and fair comparison.
-- **[Challenge 03 - Trust the Evidence](./Solution-03.md)** - Captured tool context, hosted evaluation, and trust boundaries.
+- **[Challenge 02 - Build the Context Engine](./Solution-02.md)** - Native AI Index/KIs and MCP endpoint.
+- **[Challenge 03 - Rise of Agent Optimus](./Solution-03.md)** - Optimus agent, routing, and fair comparison.
+- **[Challenge 04 - Trust the Evidence](./Solution-04.md)** - Captured tool context, hosted evaluation, and trust boundaries.
 
 ## Coach Prerequisites
 
@@ -73,8 +74,9 @@ Use these coach-only facilitation budgets after accounts are ready. Adjust from 
 | Intro and learning goals | 10 minutes | 10 minutes |
 | Challenge 00 | 15 minutes | 20 minutes |
 | Challenge 01 | 20 minutes | 30 minutes |
-| Challenge 02 | 30 minutes | 45 minutes |
-| Challenge 03 | 30 minutes | 45 minutes |
+| Challenge 02 | 20 minutes | 30 minutes |
+| Challenge 03 | 20 minutes | 30 minutes |
+| Challenge 04 | 30 minutes | 45 minutes |
 | Evidence demos and optional extensions | 10 minutes | 20 minutes |
 | Cleanup | 5 minutes | 10 minutes |
 | Total | 120 minutes | 180 minutes |
@@ -93,9 +95,9 @@ Explain that manual approvals add human time to latency. Do not compare those du
 
 ## Repository Contents
 
-- `Student/Challenge-00.md` through `Challenge-03.md`: student goals, criteria, and resources.
+- `Student/Challenge-00.md` through `Challenge-04.md`: student goals, criteria, and resources.
 - `Student/Resources`: resource-only notebook environment, synthetic data, helper code, and draft infrastructure.
-- `Coach/Solution-00.md` through `Solution-03.md`: guidance and progressive hints.
+- `Coach/Solution-00.md` through `Solution-04.md`: guidance and progressive hints.
 - `Coach/Solutions/Reference.ipynb`: parameterized reference flow and proposed evaluation, not a tested golden run.
 - `Coach/Solutions/expected-answers.json`: evidence anchors, never distributed in the student package.
 

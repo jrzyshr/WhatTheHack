@@ -20,8 +20,9 @@ Meet **Agent Brute Force**, measure its discovery work, and help **Agent Optimus
 
 - Challenge 00: **[Ready, Set, Connect](Student/Challenge-00.md)** - Prepare your own environments and launch the supplied notebook workspace.
 - Challenge 01: **[Meet Agent Brute Force](Student/Challenge-01.md)** - Build a Foundry agent with Elastic MCP and collect a discovery baseline.
-- Challenge 02: **[Give Optimus Context](Student/Challenge-02.md)** - Generate native KIs and compare a context-first agent against the baseline.
-- Challenge 03: **[Trust the Evidence, Not Its Instructions](Student/Challenge-03.md)** - Evaluate prompt-injection resistance using retrieved Elastic data.
+- Challenge 02: **[Build the Context Engine](Student/Challenge-02.md)** - Create an AI Index and Knowledge Indicators, and retrieve the Context Engine MCP endpoint.
+- Challenge 03: **[Rise of Agent Optimus](Student/Challenge-03.md)** - Build a Foundry agent on the Context Engine and compare it with Agent Brute Force.
+- Challenge 04: **[Trust the Evidence, Not Its Instructions](Student/Challenge-04.md)** - Evaluate prompt-injection resistance using retrieved Elastic data.
 
 ## Prerequisites
 
