@@ -4,11 +4,9 @@
 
 ## Introduction
 
-Precision Labs' Support Copilot is built and hosted in Microsoft Foundry, and needs to find trustworthy answers in three data sets: CRM accounts, support tickets, and KB articles. In this challenge you will prepare the three environments used for the rest of the hack: an Azure lab subscription (Microsoft Foundry), an Elastic Serverless trial (data and MCP tools), and a GitHub Codespace (your developer environment). One deployment script, run from the Codespace terminal, will load the sample data and create the Elastic MCP tools for you.
+Precision Labs' Support Copilot is built and hosted in Microsoft Foundry, and needs to find trustworthy answers in three data sets: CRM accounts, support tickets, and KB articles. In this challenge you will prepare the three environments used for the rest of the hack: an Azure lab subscription (Microsoft Foundry), an Elastic Serverless trial (data and MCP tools), and a GitHub Codespace (your developer environment).
 
-> **Draft notice:** This workshop has not been tested. Items shown as `<PLACEHOLDER>` will be provided by your event organizer before the event.
-
-## Common Prerequisites
+## Prerequisites
 
 - Access to the Azure lab environment provided for this event.
 - A [GitHub account](https://github.com/signup) (use your personal account, not an enterprise managed account).
@@ -41,6 +39,7 @@ Gather the following from the lab environment and keep them handy. You will use 
    - In the project, go to **Developer Tools / API keys** (or search for "API keys" in the top search bar).
    - Click **Create API key**, give it a name such as `wth-setup`, and keep the default privileges.
    - Copy the **encoded** key value immediately. It is shown only once.
+   - Keep it available until you create your local `.env` file in the deployment section below. You will paste it into `ELASTIC_API_KEY`.
 
    `<PLACEHOLDER: Screenshot showing where to create and copy the Elastic API key>`
 
@@ -59,11 +58,11 @@ GitHub Codespaces is available to every personal GitHub.com account, which inclu
 
 **NOTE:** If you close the Codespace, return to [GitHub Codespaces](https://github.com/codespaces) to find and re-launch it.
 
-### Deploy Cloud Resources and Sample Data
+### Configure and Load Sample Data
 
 In this section, you will deploy the sample data for this hackathon.
 
-From the **Terminal** in your Codespace, complete the following:
+From the **Terminal** in your Codespace, complete the following. Run the commands from the student resource root, the folder containing `.env.sample` and `data/`:
 
 1. Log in to Azure with your lab credentials:
 
@@ -71,49 +70,59 @@ From the **Terminal** in your Codespace, complete the following:
    az login
    ```
 
-   The Codespace uses a device code. Open the URL shown, enter the code, and sign in with the Azure username and password from your lab environment. If your organization's policy blocks device-code login, open the Codespace in VS Code Desktop and run `CODESPACES=false az login`.
+   **NOTE:** The Codespace uses a device code. Open the URL shown, enter the code, and sign in with the Azure username and password from your lab environment. If your organization's policy blocks device-code login, open the Codespace in VS Code Desktop and run `CODESPACES=false az login`.
 
 2. Add your Elastic values to the configuration file used by the setup scripts:
 
    ```bash
    cp .env.sample .env
+   chmod 600 .env
    code .env
    ```
 
-   Fill in your Elasticsearch endpoint URL, Kibana URL, and Elastic API key. Leave the other values as provided.
+   If you already have a `.env` file, skip the copy command so you do not overwrite your settings.
 
-3. Run the deployment script. It sets up the Elastic sample data and creates the Elastic MCP tools backed by ES|QL queries:
+   Replace the values of these three entries with the URLs and **encoded setup API key** you copied from your Elastic project:
 
-   ```bash
-   chmod +x infra/deploy.sh
-   ./infra/deploy.sh
+   ```dotenv
+   ELASTICSEARCH_URL=https://<your-elasticsearch-endpoint>
+   KIBANA_URL=https://<your-kibana-endpoint>
+   ELASTIC_API_KEY=<your-encoded-setup-api-key>
    ```
 
-   Wait for the script to report success. If it fails, read the message, correct your `.env` file, and run it again.
+   Save the file before continuing. Leave the other entries unchanged for now. Keep `.env` private and never commit it to Git.
+
+3. Run the data loader:
+
+   ```bash
+   python3 -m pip install elasticsearch python-dotenv
+   bash data/load_data.sh
+   ```
+
+   The loader automatically reads the settings from `.env`
+
+   **TODO:** The Codespace will be updated to run `python3 -m pip install elasticsearch python-dotenv`. Then we can remove this step for the students.
+
+   **Warning:** Every run deletes and recreates the three workshop sample indices. Wait for the generators to finish and check that the final document counts are **500 accounts**, **3,000 tickets**, and **150 articles**. 
+   
+   **NOTE:** If the script fails or prints `ERR`, read the error, check your `.env` settings and project access, and run it again.
 
 ### Verify Your Elastic Environment in Kibana
 
 1. Open your **Kibana URL** in a browser and sign in.
 2. Confirm the sample indices exist:
    - Open **Index Management** (search for "Index Management" in the top search bar) and select the **Indices** tab.
-   - Find the three workshop indices (CRM accounts, support tickets, and KB articles) whose names begin with `cq-`. Click each one and open the **Documents** tab (or use **Discover**) to confirm it contains records.
+   - Find `precision-crm-accounts`, `precision-support-tickets`, and `precision-kb-articles`. Click each one and open the **Documents** tab (or use **Discover**) to confirm it contains records.
 
    `<PLACEHOLDER: Screenshot of the workshop indices in Index Management>`
-
-3. Confirm the MCP tools exist:
-   - Open **Agent Builder** from the navigation menu (or search for "Agent Builder") and go to **Tools**.
-   - Find the ES|QL tools created by the script. Open one to review its description and query.
-
-   `<PLACEHOLDER: Screenshot of the Tools list in Agent Builder>`
 
 ## Success Criteria
 
 - Verify that you can sign in to the Azure lab environment and that `az account show` in the Codespace shows the lab subscription.
 - Verify that your Elastic trial project exists and that you have your Elasticsearch URL, Kibana URL, and API key.
 - Verify that your Codespace is running and that your `.env` file contains your Elastic values.
-- Verify that `./infra/deploy.sh` completed without errors.
+- Verify that `bash data/load_data.sh` completed without errors and printed the expected document counts.
 - Demonstrate in Kibana that the three workshop sample indices exist and contain documents.
-- Demonstrate in Kibana that the ES|QL MCP tools exist in Agent Builder.
 
 ## Learning Resources
 

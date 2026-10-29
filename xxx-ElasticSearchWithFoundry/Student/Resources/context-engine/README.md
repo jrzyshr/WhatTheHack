@@ -25,13 +25,11 @@ No data files are committed; it is generated at load time, so the repo stays sma
 ## Order to run on a fresh Serverless trial
 
 1. **Create an Elasticsearch Serverless project** and an API key that can create indices and write documents.
-2. **Load the data** (Python 3 with `pip install elasticsearch`):
+2. **Load the data** (Python 3 with `python3 -m pip install elasticsearch python-dotenv`). From the student resource root, copy `.env.sample` to `.env` (unless it already exists), set `ELASTICSEARCH_URL` and `ELASTIC_API_KEY` to your endpoint and setup key, and save it. Keep `.env` private and uncommitted.
    ```bash
-   export ES_URL="https://<your-project-endpoint>"
-   export ES_API_KEY="<your-api-key>"
-   cd data && ./load_data.sh
+   bash data/load_data.sh
    ```
-   Expect counts of 500 / 3000 / 150. The script deletes and recreates the three `precision-*` indices.
+   No credential exports are needed. Exported settings override `.env`; legacy `ES_URL` / `ES_API_KEY` exports take precedence if present. Expect counts of 500 / 3000 / 150. The script deletes and recreates the three `precision-*` indices.
 3. **Create the AI Index, add sources, run the workflow**: follow [`docs/ai-index-setup.md`](docs/ai-index-setup.md). Before running the workflow, replace `<YOUR_LLM_CONNECTOR_ID>` in the YAML with a chat-completion connector id from your project.
 4. **Confirm 3 Knowledge Indicators** exist in `ai-index-idx-precision-corpus`.
 5. **Connect your agent** (yours, not covered here). Have it retrieve KIs with the Context Engine tools (`list_ai_indices`, `describe_ai_index`, `query_ai_indices`) first, then run targeted ES|QL against the `precision-*` indices.

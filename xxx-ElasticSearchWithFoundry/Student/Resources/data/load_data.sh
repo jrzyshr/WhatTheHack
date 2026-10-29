@@ -2,19 +2,42 @@
 # Load the three Precision Labs indices into your Elasticsearch Serverless project.
 #
 # Usage:
-#   pip install elasticsearch
-#   export ES_URL="https://<your-project>.es.<region>.<provider>.elastic.cloud"
-#   export ES_API_KEY="<your API key>"
-#   ./load_data.sh
+#   From the student resource root, copy .env.sample to .env and set
+#   ELASTICSEARCH_URL and ELASTIC_API_KEY (the setup key), then run:
+#   python3 -m pip install elasticsearch python-dotenv
+#   bash data/load_data.sh
+#
+# Exported settings override .env. Legacy ES_URL / ES_API_KEY exports are supported
+# and take precedence over ELASTICSEARCH_URL / ELASTIC_API_KEY.
 #
 # Deletes and recreates the three precision-* indices each run. Data is generated
 # deterministically (seed 42), so every run produces the same documents. Takes under 90 s.
 set -euo pipefail
 cd "$(dirname "$0")"
 
-: "${ES_URL:?Set ES_URL to your Elasticsearch endpoint}"
-: "${ES_API_KEY:?Set ES_API_KEY to an API key that can create indices}"
 PYTHON="${PYTHON:-python3}"
+
+read_setting() {
+  "$PYTHON" - "$1" "$2" <<'PY'
+import os
+import sys
+
+try:
+    from dotenv import load_dotenv
+except ImportError:
+    sys.exit("Missing python-dotenv. Install it with: python3 -m pip install python-dotenv")
+
+load_dotenv("../.env", override=False)
+name, legacy_name = sys.argv[1:]
+value = (os.environ.get(legacy_name) or os.environ.get(name) or "").strip()
+if not value:
+    sys.exit(f"Set {name} in the student resource root's .env file, then rerun the loader.")
+print(value)
+PY
+}
+
+ES_URL="$(read_setting ELASTICSEARCH_URL ES_URL)"
+ES_API_KEY="$(read_setting ELASTIC_API_KEY ES_API_KEY)"
 
 echo "--- precision-crm-accounts (500 accounts) ---"
 "$PYTHON" crm_dataset.py --es-url "$ES_URL" --api-key "$ES_API_KEY"
