@@ -1,4 +1,4 @@
-# Context Quest - Coach's Guide
+# What The Hack - Context Quest: Optimizing AI Agents with Microsoft Foundry and Elastic Context Engine - Coach Guide
 
 **[Hack Home](../README.md)**
 
