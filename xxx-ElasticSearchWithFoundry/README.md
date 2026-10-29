@@ -1,7 +1,5 @@
 # What The Hack - Context Quest: Optimizing AI Agents with Microsoft Foundry and Elastic Context Engine
 
-> **Authoring draft - not delivery-ready.** Service access, SDK compatibility, deployment, notebooks, and performance have not been tested. Native Context Engine trial eligibility and the Foundry indirect-attack evaluation mapping must be confirmed before an event.
-
 ## Introduction
 
 Your fictional company, Precision Labs, keeps CRM accounts, support tickets, and knowledge base (KB) articles in Elasticsearch. Precision's Support Copilot is built and hosted in Microsoft Foundry.
