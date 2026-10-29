@@ -30,7 +30,7 @@ Gather the following from the lab environment and keep them handy. You will use 
 
 ### Create an Elastic Serverless Trial Environment
 
-1. Go to `<PLACEHOLDER: URL to create an Elastic trial>` and sign up for a free Elastic Cloud trial.
+1. Go to [Elastic Cloud trial account](https://cloud.elastic.co/registration) and sign up for a free Elastic Cloud trial.
 2. When prompted to create a project, choose **Elasticsearch** as the project type and use the default settings.
 3. Wait for the project to finish creating, then open it.
 4. Gather your **Elasticsearch endpoint URL** and your **Kibana URL**. They are different URLs, and you will need both.
