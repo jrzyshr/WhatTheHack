@@ -2,7 +2,7 @@
 // See: https://containers.dev/implementors/json_reference/
 {
   "name": "xxx-ElasticSearchWithFoundry",
-  "image": "mcr.microsoft.com/devcontainers/universal:2",
+  "image": "mcr.microsoft.com/devcontainers/python:1-3.12-bookworm",
   "workspaceFolder": "/workspace/xxx-ElasticSearchWithFoundry/Student/Resources",
   "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind,consistency=cached",
   "hostRequirements": {
@@ -10,8 +10,7 @@
   },
   "features": {
     "ghcr.io/devcontainers/features/azure-cli:1": {},
-    "ghcr.io/azure/azure-dev/azd:latest": {},
-    "ghcr.io/devcontainers/features/python:1": {}
+    "ghcr.io/azure/azure-dev/azd:latest": {}
   },
   "customizations": {
     "vscode": {
