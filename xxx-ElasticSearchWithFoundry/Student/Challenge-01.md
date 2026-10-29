@@ -14,14 +14,20 @@ A support agent must decide which data to use before it can answer. Index names 
 
 Agent Mole is going to have to dig around blindly in your data to find the answers. It is our baseline, not a deliberately bad agent. It is connected to the Elastic MCP endpoint that exposes the individual workshop indices, so it has to discover which data to query before it can answer. In this challenge you will build it in the Microsoft Foundry portal, test it, and measure what it costs to answer questions.
 
-> **Draft notice:** Portal menu labels change frequently. If a label below does not match what you see, look for the closest equivalent or ask your coach. Items shown as `<PLACEHOLDER>` will be provided by your event organizer.
+> **Draft notice:** Portal menu labels change frequently. If a label below does not match what you see, look for the closest equivalent or ask your coach.
 
 ## Description
 
 ### Create Agent "Mole"
 
 - Open [Microsoft Foundry](https://ai.azure.com) and sign in with the Azure credentials from your lab environment. Make sure the **New Foundry** experience toggle is on, if one is shown.
-- Select the Foundry project provided by your lab environment. `<PLACEHOLDER: lab project name, or instructions to create one>`
+- If you do not already have a project, create one:
+  - When the portal opens, select **Create a new project** if prompted.
+  - If you already have a project loaded, select the project name in the upper-left corner, then select **Create new project**.
+  - Enter a project name such as `precision-support-lab`.
+  - Select **Advanced options** and choose a resource group and region for the project.
+  - Select **Create project** and wait for the project overview page to finish loading.
+- If a project already exists for your lab, select it instead of creating a new one.
 - **Deploy a model** to power the agent:
   - Go to **Models + endpoints** (or **Model catalog**) and select **Deploy a base model**.
   - Search for `gpt-5-mini` (a small, low-cost reasoning model) and select **Confirm**. If it is unavailable in your lab region or quota, use the model your coach recommends. `<PLACEHOLDER: confirmed model for the lab>`
@@ -61,23 +67,49 @@ Agent Mole is going to have to dig around blindly in your data to find the answe
   - Open **Agent Builder**, go to **Tools**, and select **Manage MCP** (or **MCP server**), then **Copy MCP Server URL**.
   - If you cannot find the button, build the URL yourself: `<YOUR_KIBANA_URL>/api/agent_builder/mcp`.
 
-  `<PLACEHOLDER: Screenshot showing where to copy the MCP server URL in Kibana>`
+  ![Screenshot showing where to copy the MCP server URL in Kibana](../images/kibana-mcp-url.png)
 
 - **Connect the agent to Elastic:**
-  - Back in your agent in Foundry, find **Tools** and select **Add**, then choose **Custom** and **Model Context Protocol (MCP)**.
-  - Enter a name such as `elastic-mcp` and paste the **MCP server URL** as the remote MCP endpoint.
-  - Set the authentication to **Key-based**. Add a credential with the key name `Authorization` and the value `ApiKey <your Elastic API key>` (replace the placeholder with your encoded key from Challenge 00; keep the word `ApiKey` and the space).
+  - Back in your agent in Foundry, open **Tools** and select **Add tool** (or **+ Add**).
+  - In the tool catalog, choose **Elasticsearch** if it is listed. The Elasticsearch tool includes a dedicated configuration form for the MCP connection.
+  - Fill in the connection fields with your Kibana MCP settings:
+    - Name: `elastic-mcp` (or similar)
+    - MCP server URL / endpoint: paste the **MCP server URL** from Kibana
+    - Authentication: **API key** / **Key-based**
+    - Header name: `Authorization`
+    - Header value: `ApiKey <your Elastic API key>` (replace the placeholder with your encoded key from Challenge 00; keep the word `ApiKey` and the space)
+  
+    ![Screenshot of the completed MCP tool connection in Foundry](../images/foundry-add-elasticsearch-tool.png)
+
+  - If you do not see an Elasticsearch entry in the catalog, choose **Model Context Protocol (MCP)** or **Custom** from the catalog and enter the same MCP endpoint URL and API key. The configuration flow is the same.
   - Select **Connect** (or **Create**) and confirm the Elastic tools are listed. If the tool list shows an error, re-check the URL and key.
   - Leave tool approval enabled so that you can inspect each call.
 
-  `<PLACEHOLDER: Screenshot of the completed MCP tool connection in Foundry>`
+
 
 ### Test Agent "Mole"
 
 - Open the agent in the **Playground** (use **Try in playground** or the chat pane next to the agent).
 - Ask the agent each of these sample queries in a **new conversation** each time:
 
-  `<PLACEHOLDER: list of sample queries>`
+**Prioritize At-Risk Customers**
+  ```text 
+  Find Enterprise customers with a churn risk score of at least 0.7 and unresolved integration or performance tickets. Rank customers by annual recurring revenue, show their critical or high-priority tickets, and recommend next steps using relevant knowledge base articles.
+  ```
+
+**Knowledge Base: Okta SSO**
+```text
+Our Okta SSO login fails with a provisioning error. Which SAML attributes are required, and how should we test the configuration before rolling it out?
+```
+**Support Tickets: Unresolved Integration Issues**
+```text
+Find unresolved critical and high-priority integration tickets. Show ticket ID, account ID, company, assigned support agent, and a short issue summary.
+```
+
+**Support Tickets and Knowledge Base: Conflicting API Key Rotation Guidance**
+  ```text
+  Compare historical ticket resolutions about API key rotation with the knowledge base article. Do they disagree about the grace period? Cite both sources and flag what needs confirmation before we advise a customer.`
+```
 
 - When the agent asks for approval to run an MCP tool, expand the request, review the tool name and arguments, and approve it only if it is a read-only call against your workshop data.
 - After each answer, expand the tool-call details in the response to see which Elastic tools were called and in what order.
