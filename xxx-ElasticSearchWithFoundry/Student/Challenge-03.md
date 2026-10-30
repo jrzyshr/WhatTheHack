@@ -12,6 +12,8 @@
 
 Agent Optimus uses the Context Engine and its AI Index to understand your data before retrieving it. You have already built an agent in Microsoft Foundry, so this challenge repeats those steps with a different MCP endpoint. Then you will measure whether the context-first approach changes how the agent works.
 
+Building and refreshing context has a cost, so reduced per-question discovery is a hypothesis to measure, not a given.
+
 > **Draft notice:** Portal menu labels change frequently. Items shown as `<PLACEHOLDER>` will be provided by your event organizer.
 
 ## Description
