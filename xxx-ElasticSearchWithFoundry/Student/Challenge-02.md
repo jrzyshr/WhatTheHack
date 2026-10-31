@@ -11,9 +11,9 @@
 
 Agent Mole had to discover (and rediscover) your indices, mappings, and joins before it could answer EVERY query. Elastic's **Context Engine**, available as **Context** in Kibana, moves that recurring interpretation out of the agent's question-answering loop. It lets you create **AI Indices**, attach source indices, and run automations using Kibana Workflows to generate reusable context.
 
-An **AI Index** is a special index (named `ai-index-idx-<name>`) that holds **Knowledge Indicators (KIs)** for agents to consult before querying source data. Each KI has a `type`, `title`, `description`, and `content`. In this challenge, you will create `index_metadata` KIs describing each source's purpose, key fields, join keys, known gaps, and verified ES|QL access patterns. An AI Index does not merge or replace source documents.
+An **AI Index** is a special index (named `ai-index-idx-<name>`) that holds **Knowledge Indicators (KIs)** for agents to consult before querying source data. Each KI has a `type`, `title`, `description`, and `content`. In this challenge, you will create `index_metadata` KIs describing each source's purpose, key fields, join keys, known gaps, and verified ES\|QL access patterns. An AI Index does not merge or replace source documents.
 
-Without KIs, an agent may repeatedly call tools such as `list_indices` and `get_index_mapping`. With KIs, it can retrieve routing facts and move to targeted ES|QL queries. KIs describe structure and meaning, not live values: current counts, statuses, and dates still require source queries. 
+Without KIs, an agent may repeatedly call tools such as `list_indices` and `get_index_mapping`. With KIs, it can retrieve routing facts and move to targeted ES\|QL queries. KIs describe structure and meaning, not live values: current counts, statuses, and dates still require source queries. 
 
 In this challenge you will build an AI Index and KIs for Precision Labs data that Agent Optimus will use in the next challenge. 
 
@@ -66,7 +66,7 @@ The workflow runs once per source index. It fetches the mapping, samples 20 rand
 
 KIs are ordinary Elasticsearch documents. In **Discover** try these queries:
 
-**NOTE:** ES|QL mode, set the time range wide enough to include when you ran the workflow.
+**NOTE:** ES\|QL mode, set the time range wide enough to include when you ran the workflow.
 
 ```esql
 FROM ai-index-idx-precision-corpus
@@ -103,7 +103,7 @@ Re-run the workflow whenever source schemas or data distributions change. It is 
 - Verify that the native AI Index `precision-corpus` exists with a description covering the customer-success scenario and known data gaps.
 - Show that all three `precision-*` source indices are associated with the AI Index.
 - Verify a successful automation run and exactly three `index_metadata` KIs, one for each source, with populated `type`, `title`, `description`, and `content` fields.
-- Demonstrate retrieval of KI content through ES|QL, including a `MATCH` query relevant to a customer-success question.
+- Demonstrate retrieval of KI content through ES\|QL, including a `MATCH` query relevant to a customer-success question.
 - Show that the accounts KI correctly defines `arr` and that any corrections you made are persisted and retrievable.
 - Demonstrate how a KI helps select an index or construct a working source query, with field names and join guidance checked against the actual source mappings.
 - Demonstrate why context generation and refresh cost is separate from per-question token use, and identify when KIs need refreshing.
